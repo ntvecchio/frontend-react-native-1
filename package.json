@@ -11,8 +11,11 @@
   },
   "dependencies": {
     "@expo/metro-runtime": "~3.2.1",
+    "@expo/vector-icons": "^14.0.2",
     "@react-icons/all-files": "^4.1.0",
+    "cors": "^2.8.5",
     "expo": "~51.0.24",
+    "expo-image": "~1.12.13",
     "expo-status-bar": "~1.12.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
