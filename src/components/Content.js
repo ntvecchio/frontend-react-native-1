@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react'
 import {View, StyleSheet, Text} from 'react-native'
 import CardAccount from './CardAccount'
-//import CardAccount2 from './CardAccount2'
-//import Calc from './Calc'
+import { useLocalSearchParams } from 'expo-router'
 
 export default function Content(){
 
@@ -27,18 +26,20 @@ export default function Content(){
 
     return (
         <View style={styles.content}>
-        
-        {/* <Calc /> */}
-
+               
         { accounts.length === 0 && <Text>Loading...</Text>}
 
         {
           accounts.map( (account) => 
             <CardAccount
-              key={account.id} 
+              key={account.id}
+              id={account.id} 
               service={account.service}
               imgUrl={account.logo_image}
               userName={account.username}
+              pass={account.pass}
+              accounts={accounts}
+              setAccounts={setAccounts}
             /> 
           )
         }
