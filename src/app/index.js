@@ -1,17 +1,15 @@
 import { ScrollView, StyleSheet } from 'react-native'
-import Header from './src/components/Header'
-import Footer from './src/components/Footer'
-import Content from './src/components/Content'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
+import Content from '../components/Content'
 
 
-export default function App() {
+export default function Home() {
   return (
       <ScrollView style={styles.container}>
-        
         <Header />
         <Content />
         <Footer />
-      
       </ScrollView>
   )
 }
