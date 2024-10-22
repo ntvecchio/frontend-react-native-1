@@ -12,7 +12,7 @@ export default function Header(){
                     source={require('../../assets/icon.jpg')} //Local
                     //source="https://avatars.githubusercontent.com/u/4259630?v=4"
                 />
-                <Text style={styles.name}>Renan Cavichi</Text>
+                <Text style={styles.name}>Yan Souza</Text>
             </View>
             <Link href="signup">
                 <Feather style={styles.menu} name="plus" size={24} color="black" />

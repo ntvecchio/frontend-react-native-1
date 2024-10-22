@@ -1,13 +1,14 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import {View, StyleSheet, Text} from 'react-native'
 import CardAccount from './CardAccount'
-//import CardAccount2 from './CardAccount2'
-//import Calc from './Calc'
+import { useAccountStore } from '../stores/useAccountStore'
 
 export default function Content(){
 
-  const [accounts, setAccounts] = useState([])
- 
+  const { accounts, setAccounts } = useAccountStore()
+
+  console.log('Accounts: ', accounts)
+  
    useEffect(() => {
         const getAccounts = async () => {
             const response = await fetch('http://localhost:3000/account/list')
@@ -27,15 +28,14 @@ export default function Content(){
 
     return (
         <View style={styles.content}>
-        
-        {/* <Calc /> */}
-
+               
         { accounts.length === 0 && <Text>Loading...</Text>}
 
         {
           accounts.map( (account) => 
             <CardAccount
-              key={account.id} 
+              key={account.id}
+              id={account.id} 
               service={account.service}
               imgUrl={account.logo_image}
               userName={account.username}
