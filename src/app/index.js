@@ -1,13 +1,12 @@
 import { ScrollView, StyleSheet, View, Text, ActivityIndicator } from 'react-native'
 import { useEffect } from 'react'
-import Footer from '../components/Footer'
 import { useRouter } from 'expo-router'
 
 export default function Init() {
   const router = useRouter()
 
   useEffect(() => {
-    setTimeout(() => router.replace('/login'), 3000)
+    setTimeout(() => router.replace('/home'), 3000)
   },[])
 
   return (
@@ -16,7 +15,6 @@ export default function Init() {
           <Text style={{fontSize: 30}}>MyPass</Text>
           <Text style={{fontSize: 16, marginVertical: 10} }>Organize suas contas e senhas com o MyPass.</Text>
           <ActivityIndicator style={{marginVertical: 30}} />
-          <Footer />
         </View>
         
       </ScrollView>

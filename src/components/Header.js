@@ -1,49 +1,48 @@
-import { View, Text, StyleSheet} from 'react-native'
-import { Image } from 'expo-image'
-import Feather from '@expo/vector-icons/Feather'
-import { Link } from 'expo-router'
+import React from 'react';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { useRouter } from 'expo-router';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
-export default function Header(){
-    return (
-        <View style={styles.header}>
-            <View style={styles.user}>
-                <Image 
-                    style={styles.avatar}
-                    source={require('../../assets/icon.jpg')} //Local
-                    //source="https://avatars.githubusercontent.com/u/4259630?v=4"
-                />
-                <Text style={styles.name}>Yan Souza</Text>
-            </View>
-            <Link href="signup">
-                <Feather style={styles.menu} name="plus" size={24} color="black" />
-            </Link>
-        </View>
-    )
+export default function NavbarPadrao({ texto }) {
+
+  const router = useRouter();
+
+  const handleBackPress = () => {
+    router.back();
+  };
+
+  return (
+    <View style={styles.navbarContainer}>
+      <View style={styles.titleContainer}>
+        <TouchableOpacity onPress={handleBackPress} style={styles.backButton}>
+          <Ionicons name="arrow-back" size={24} color="white" />
+        </TouchableOpacity>
+        <Text style={styles.titleText}>{texto}</Text>
+      </View>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
-    header: {
-        //backgroundColor: "#899986",
-        alignItems: 'center',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        padding: 15,
-    },
-    user: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: 10
-    },
-    avatar: {
-        width: 50,
-        height: 50,
-        borderRadius: 25
-    },
-    name: {
-        fontWeight: '600',
-        fontSize: 18
-    },
-    menu: {
-        padding: 10
-    }
-})
+  navbarContainer: {
+    backgroundColor: '#0097B2',
+    borderTopWidth: 20,
+    borderColor: 'transparent',
+    elevation: 10
+  },
+  titleContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 10,
+    paddingVertical: 18,
+  },
+  backButton: {
+    marginRight: 10,
+  },
+  titleText: {
+    fontSize: 18,
+    marginLeft: 20,
+    fontWeight: 'bold',
+    color: 'white'
+  },
+});
