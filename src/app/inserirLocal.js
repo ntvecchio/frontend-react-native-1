@@ -1,47 +1,55 @@
-import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { useRouter } from 'expo-router'
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { useRouter } from 'expo-router';
 
 export default function SportsSelection() {
   const router = useRouter();
+  const [sports, setSports] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const sports = ['Vôlei', 'Basquete', 'Futebol', 'Tênis de Mesa'];
+  // Função para buscar as modalidades do backend
+  const fetchSports = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/modalidades'); // URL backend
+      const data = await response.json();
+      setSports(data); // Atualiza o estado com as modalidades
+      setLoading(false); // Desativa o carregamento após obter os dados
+    } catch (error) {
+      console.error('Erro ao buscar modalidades:', error);
+      setLoading(false); // Desativa o carregamento em caso de erro
+    }
+  };
+
+  useEffect(() => {
+    fetchSports(); // Chama a função para buscar as modalidades quando o componente for montado
+  }, []);
+
+  if (loading) {
+    return (
+      <View style={styles.container}>
+        <ActivityIndicator size="large" color="#0097B2" />
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
-      {/* List of Sports */}
+      {/* Lista de modalidades */}
       <View style={styles.listContainer}>
         {sports.map((sport, index) => (
           <TouchableOpacity key={index} style={styles.sportButton}>
-            <Text style={styles.sportText}>{sport}</Text>
+            <Text style={styles.sportText}>{sport.nome}</Text> {/* Exibe o nome da modalidade */}
           </TouchableOpacity>
         ))}
       </View>
     </View>
   );
-
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f2f2f2',
-  },
-  header: {
-    backgroundColor: '#0097B2',
-    paddingHorizontal: 16,
-    paddingVertical: 20,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  backButton: {
-    marginRight: 10,
-  },
-  headerText: {
-    color: '#fff',
-    fontSize: 18,
-    fontWeight: 'bold',
-    flexShrink: 1,
   },
   listContainer: {
     margin: 16,

@@ -11,7 +11,7 @@ import { Feather } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 
 export default function Login() {
-  const router = useRouter(); // Hook do Expo Router para navegação
+  const router = useRouter(); 
 
   const [form, setForm] = useState({
     email: '',
@@ -23,7 +23,6 @@ export default function Login() {
   };
 
   const handleLogin = () => {
-    // Aqui você pode adicionar lógica para verificação de login
     console.log('Login Data:', form);
     alert('Login realizado com sucesso!');
   };
